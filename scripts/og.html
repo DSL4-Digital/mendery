@@ -1,0 +1,60 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face { font-family: 'IBM Plex Sans'; font-weight: 500; src: url(../public/fonts/IBMPlexSans-500-latin.woff2) format('woff2'); }
+@font-face { font-family: 'IBM Plex Sans'; font-weight: 600; src: url(../public/fonts/IBMPlexSans-600-latin.woff2) format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-weight: 500; src: url(../public/fonts/IBMPlexMono-500-latin.woff2) format('woff2'); }
+* { margin: 0; box-sizing: border-box; }
+body {
+  width: 1200px; height: 630px; overflow: hidden;
+  background: #e2eaf0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #162422;
+  position: relative;
+}
+.sheet {
+  position: absolute; right: 70px; top: 82px; width: 330px; height: 620px;
+  background: #fff; border: 1px solid rgba(19,40,50,.18); border-top: 5px solid #0878a6;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 22px 60px -22px rgba(22,36,34,.38);
+  transform: rotate(4deg);
+  padding: 40px 34px;
+}
+.sheet .line { height: 13px; background: rgba(22,36,34,.13); border-radius: 3px; margin-bottom: 17px; }
+.sheet .line.short { width: 62%; }
+.sheet .line.mid { width: 84%; }
+.seam {
+  position: absolute; left: -14px; right: -14px; top: 200px; height: 5px;
+  background: linear-gradient(90deg, transparent, #c49a42 15%, #e6c65a 40%, #c49a42 60%, transparent 85%, #c49a42 95%, transparent);
+  transform: rotate(-3deg);
+}
+.wrap { position: absolute; left: 76px; top: 68px; width: 710px; }
+.brand { display: flex; align-items: center; gap: 20px; font-weight: 600; font-size: 38px; letter-spacing: .12em; text-transform: uppercase; }
+.brand img { width: 86px; height: 54px; object-fit: contain; }
+h1 { font-weight: 600; font-size: 72px; line-height: 1.03; letter-spacing: -0.025em; margin-top: 48px; }
+h1 em { position: relative; display: inline-block; font-style: normal; color: #0878a6; }
+h1 em::after {
+  content: ""; position: absolute; left: .04em; right: 0; bottom: -.08em;
+  height: 5px; border-radius: 99px; background: #c49a42;
+}
+.sub { font-family: 'IBM Plex Mono', monospace; font-size: 20px; line-height: 1.6; color: #465a57; margin-top: 42px; letter-spacing: .01em; }
+.url { position: absolute; left: 76px; bottom: 54px; font-family: 'IBM Plex Mono', monospace; font-size: 23px; color: #0878a6; font-weight: 500; }
+</style></head>
+<body>
+  <div class="sheet">
+    <div class="seam"></div>
+    <div class="line mid"></div><div class="line"></div><div class="line short"></div>
+    <div class="line"></div><div class="line mid"></div><div class="line short"></div>
+    <div class="line"></div><div class="line mid"></div><div class="line"></div>
+    <div class="line short"></div><div class="line mid"></div>
+  </div>
+  <div class="wrap">
+    <div class="brand">
+      <img src="../public/mendery_logo.png" alt="">
+      Mendery
+    </div>
+    <h1>Your file won’t open. The words are usually <em>still inside.</em></h1>
+    <div class="sub">corrupted .docx · .xlsx · .pptx · SQLite → recovered<br>free · open source · nothing is ever uploaded</div>
+  </div>
+  <div class="url">mendery.dsl4.com</div>
+</body></html>

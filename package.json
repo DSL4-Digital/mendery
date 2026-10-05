@@ -1,0 +1,11 @@
+{
+  "name": "mendery",
+  "version": "1.0.0",
+  "description": "Recover text from corrupted documents, entirely in your browser.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "fixtures": "node scripts/make_fixtures.mjs",
+    "test": "node scripts/make_fixtures.mjs && node --test 'test/*.test.mjs'"
+  }
+}

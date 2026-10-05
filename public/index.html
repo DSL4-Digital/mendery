@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  Mendery cannot send your file anywhere: the Content-Security-Policy below
+  (and in the server headers) sets connect-src 'none', which the browser
+  enforces. Open DevTools → Network and watch: nothing leaves this page.
+-->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' blob: data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Mendery — recover corrupted files in your browser. Free, no upload.</title>
+<meta name="description" content="Your .docx, .xlsx, .pptx or SQLite file won't open? The words are usually still inside. Mendery reads the raw bytes and recovers what survived — entirely in your browser. Free, open source, nothing is ever uploaded.">
+<link rel="canonical" href="https://mendery.dsl4.com/">
+<meta property="og:title" content="Mendery — recover text from a corrupted document, free, no upload">
+<meta property="og:description" content="Corrupted .docx, .xlsx, .pptx, .odt or SQLite file? Mendery scans the raw bytes in your browser and recovers everything that survived. Nothing is uploaded, ever.">
+<meta property="og:url" content="https://mendery.dsl4.com/">
+<meta property="og:image" content="https://mendery.dsl4.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Mendery",
+  "url": "https://mendery.dsl4.com/",
+  "description": "Recover text from a corrupted .docx, .xlsx, .pptx, .odt or SQLite file, entirely in your browser. The raw bytes are scanned locally and everything that survived is recovered — nothing is ever uploaded.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (modern web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "featureList": [
+    "Recover text from corrupted .docx, .xlsx, .pptx and .odt files",
+    "Recover rows from damaged SQLite databases",
+    "Runs entirely client-side — no file is ever uploaded",
+    "Free and open source"
+  ]
+}
+</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon-2.png">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="app.js"></script>
+<script type="module" src="logo-fx.js"></script>
+</head>
+<body>
+<noscript><p class="noscript-note">Mendery needs JavaScript to read your file — locally, in your browser; nothing is uploaded. Without it, the recovery checklist further down this page still applies.</p></noscript>
+
+<header class="top reveal d0">
+  <a class="wordmark" href="/" aria-label="Mendery">
+    <span class="nav-logo-wrap">
+      <img class="nav-logo" src="mendery_logo.png" alt="">
+    </span>
+    <span class="wordmark-text">Mendery</span>
+  </a>
+  <nav>
+    <a href="https://github.com/DSL4-Digital/mendery" rel="noopener">Source&nbsp;·&nbsp;MIT</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <h1 class="reveal d1">Your file won’t open.<br>The words are usually <em>still inside.</em></h1>
+    <p class="lede reveal d2">When Word says “unreadable content” or a download dies half-way, it’s normally the file’s <strong>index</strong> that broke — not your writing. Mendery reads the raw bytes and pulls out everything that survived, <strong>right here in your browser</strong>. Nothing is uploaded, ever.</p>
+  </section>
+
+  <section class="rescue-zone reveal d3" aria-label="File recovery">
+    <label id="dropzone" class="dropzone" for="file-input">
+      <svg class="dz-icon" viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M10 4h20l8 8v32H10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M30 4v8h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M15 27l7-6 6 7 7-10" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="dz-title only-desktop">Drop the broken file here</span>
+      <span class="dz-title only-mobile">Choose the broken file</span>
+      <span class="dz-or only-desktop">or</span>
+      <span class="btn btn-primary" id="choose-btn" aria-hidden="true">Choose a file</span>
+      <span class="dz-formats">.docx&ensp;.xlsx&ensp;.pptx&ensp;.odt&ensp;.ods&ensp;.odp&ensp;·&ensp;SQLite .db&ensp;·&ensp;old .doc&ensp;·&ensp;anything else as a last resort</span>
+      <input type="file" id="file-input" aria-label="Choose a file">
+    </label>
+    <p class="demo-line">No broken file at hand? <button class="linklike" id="demo-btn" type="button">Watch it rescue a deliberately-destroyed sample →</button></p>
+  </section>
+
+  <ul class="trust reveal d4">
+    <li>
+      <span class="trust-k">Provably private</span>
+      <span class="trust-v">A strict Content-Security-Policy forbids this page from sending data anywhere. Open DevTools → Network while you use it: nothing leaves. (If you see Cloudflare’s own injected scripts being <em>blocked</em> in the console — that’s this policy working.)</span>
+    </li>
+    <li>
+      <span class="trust-k">Free &amp; open source</span>
+      <span class="trust-v">MIT-licensed, ~1,500 lines you can read. No account, no “premium tier”, no watermarks held to ransom.</span>
+    </li>
+    <li>
+      <span class="trust-k">Works offline</span>
+      <span class="trust-v">Once loaded, it keeps working with the network cable pulled. Save the page (⌘S / Ctrl+S) and keep a copy.</span>
+    </li>
+  </ul>
+
+  <section id="result" class="result" hidden aria-live="polite"></section>
+
+  <section class="plain" id="expectations">
+    <h2>What it can — and can’t — recover</h2>
+    <div class="cols">
+      <div>
+        <h3 class="ok-h">Usually recoverable</h3>
+        <ul class="checks">
+          <li>Files whose ZIP index broke — Word/Excel/PowerPoint show errors, but the content streams survived intact.</li>
+          <li>Truncated files (interrupted save, download or sync): everything up to the cut, often most of the document.</li>
+          <li>Text, tables, headings and lists from .docx and .odt; cell values from .xlsx; slide text from .pptx; rows from SQLite databases — including from destroyed database headers.</li>
+          <li>Embedded images, when their bytes survived.</li>
+          <li>A rebuilt .docx that opens in Word again, when the main text stream was recovered.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="no-h">Honestly not recoverable</h3>
+        <ul class="crosses">
+          <li>Files replaced with zeros by a failed sync or disk error — the content is simply not in the file anymore. The guide below is your real path.</li>
+          <li>Bytes inside the damaged region itself. Mendery recovers around damage; it cannot re-create what was destroyed.</li>
+          <li>Encrypted or password-protected documents.</li>
+          <li>Exact layout, fonts and formulas — content first, cosmetics second.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="plain fallback" id="fallback">
+    <h2>If Mendery can’t recover it either</h2>
+    <p>Don’t give up — the best copies of your document usually live <em>outside</em> the broken file. Work down this list:</p>
+    <ol class="rescue-list">
+      <li><strong>Cloud version history.</strong> OneDrive: right-click the file → <em>Version history</em> (<a href="https://support.microsoft.com/en-us/office/restore-a-previous-version-of-a-file-stored-in-onedrive-159cad6d-d76e-4981-88ef-de6e96c93893" rel="noopener">official guide</a>). Google Drive: right-click → <em>Manage versions</em> (<a href="https://support.google.com/drive/answer/2409045" rel="noopener">official guide</a>). Versions are typically kept about 30 days.</li>
+      <li><strong>Word / Excel / PowerPoint AutoRecover.</strong> On Windows: File → Info → Manage Document → <em>Recover Unsaved Documents</em> (<a href="https://learn.microsoft.com/en-us/troubleshoot/microsoft-365-apps/word/recover-lost-unsaved-corrupted-document" rel="noopener">Microsoft’s guide</a>). On a Mac, AutoRecovery files live in each app’s container — Finder → Go → Go to Folder (<a href="https://support.microsoft.com/en-us/office/recover-files-in-office-for-mac-6c6425b1-6559-4bbf-8f80-4f038402ff02" rel="noopener">Microsoft’s Mac guide</a>).</li>
+      <li><strong>Word’s own repair.</strong> File → Open → select the file → arrow next to Open → <em>Open and Repair</em> (<a href="https://learn.microsoft.com/en-us/troubleshoot/microsoft-365-apps/word/damaged-documents-in-word" rel="noopener">Microsoft’s guide</a>). It fixes different damage than Mendery does — worth trying both.</li>
+      <li><strong>LibreOffice backups</strong>, if you use it: Tools → Options → Load/Save → General shows whether backup copies are on, and where they go (<a href="https://help.libreoffice.org/latest/en-US/text/shared/guide/doc_autosave.html" rel="noopener">official help</a>).</li>
+      <li><strong>Email &amp; chat trails.</strong> The version you sent your supervisor / colleague / yourself last week is a real backup. Search your Sent folder.</li>
+    </ol>
+  </section>
+
+  <section class="plain how" id="how">
+    <h2>How it works</h2>
+    <p>Modern Office documents (.docx, .xlsx, .pptx, .odt) are ZIP archives. A ZIP keeps its table of contents — the <em>central directory</em> — at the very end of the file, which is exactly where truncation and interrupted writes hit. When that index dies, Word and every normal unzip tool declare the whole file unreadable, even though the actual content streams sit untouched a few bytes away.</p>
+      <p>Mendery ignores the index. It scans every byte for the local signatures that precede each inner file (<code>PK\x03\x04</code>), decompresses whatever survives — keeping the partial output when a stream dies mid-way — and turns the recovered XML back into readable text with a parser that tolerates truncation. If enough survived, it re-packages your text as a fresh, valid .docx. SQLite databases get the same treatment at the page level: every 4KB page is read independently, so one destroyed region only costs the rows that physically lived there.</p>
+    <p class="lineage">Standing on shoulders: the salvage technique descends from <code>zip&nbsp;-FF</code>, <a href="https://git.zx2c4.com/BruteZip/about/" rel="noopener">BruteZip</a> and Paul&nbsp;D.&nbsp;Pruitt’s <a href="https://github.com/socrtwo/Universal-File-Repair-Tool" rel="noopener">file-repair freeware</a>, and closed-source in-browser ZIP repair exists (ezyZip, MyFileFixer). Mendery is an independent implementation; what it adds is the open combination — MIT source anyone can audit or fork, a privacy promise <em>enforced</em> by the browser (CSP), truncation-tolerant structured preview, honest damage reporting with real fallback routes, and (as far as we could find) the first fully in-browser recovery of corrupted SQLite databases.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p><span class="foot-mark">Mendery</span> · free forever · no cookies, no analytics, no uploads · <a href="https://github.com/DSL4-Digital/mendery" rel="noopener">source (MIT)</a></p>
+  <p>© 2026 DSL4 Digital, S.L.U. · NIF B93958742 · Calle Armiño 6, BB P2 12, Arona, S/C Tenerife, 38632, Spain · <a href="mailto:legal@dsl4.com">legal@dsl4.com</a></p>
+  <p class="foot-pass">If this gave you your work back, pass the link to one person who’ll need it someday. That’s the whole payment.</p>
+  <a class="vg-credit" href="https://www.vivagrafix.com" target="_blank" rel="noopener" aria-label="Website by Viva Grafix — see how it was made">
+    <img class="vg-logo" src="/assets/vivagrafix-logo.png" alt="Viva Grafix" width="73" height="20" />
+    <span class="vg-tag">See how this site was made &rarr;</span>
+  </a>
+</footer>
+
+</body>
+</html>

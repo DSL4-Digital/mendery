@@ -1,0 +1,13 @@
+{
+  // Mendery — static assets only, no worker script, no bindings.
+  // Completely separate Cloudflare project from the dsl4.com root site.
+  "name": "mendery",
+  "compatibility_date": "2026-07-01",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "mendery.dsl4.com", "custom_domain": true }
+  ]
+}
